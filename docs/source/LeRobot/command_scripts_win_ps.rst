@@ -2,22 +2,68 @@
 Scripts
 *******
 
-lerobot-setup-motors --robot.type=so101_follower --robot.port=COM3
+find-port
+=========
 
-lerobot-calibrate  --robot.type=so101_follower --robot.port=COM3 --robot.id=my_awesome_follower_arm # <- Give the robot a unique name
+插入端口，所有已插入的端口都会被脚本识别。
 
-lerobot-setup-motors --teleop.type=so101_leader --teleop.port=COM4  # <- paste here the port found at previous step
+拔出想要知道端口号的端口，键入enter。
 
-lerobot-calibrate  --teleop.type=so101_leader --teleop.port=COM4 --teleop.id=my_awesome_leader_arm # <- Give the robot a unique name
+.. code-block:: console
 
-lerobot-teleoperate --robot.type=so101_follower --robot.port=COM3 --robot.id=my_awesome_follower_arm --teleop.type=so101_leader --teleop.port=COM4 --teleop.id=my_awesome_leader_arm
+    lerobot-find-port
 
-lerobot-teleoperate --robot.type=so101_follower  --robot.port=COM3 --robot.id=my_awesome_follower_arm --robot.cameras="{ front: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30}}" --teleop.type=so101_leader --teleop.port=COM4 --teleop.id=my_awesome_leader_arm --display_data=true
+setup-motors
+============
 
-# TODO add the ----dataset.single-task==""
+多个舵机使用串行通讯挂在一条舵机总线上(一条线)。通过不同的ID区分。其中 Gripper 的 ID 为6，依次递减。
 
-lerobot-record   --robot.type=so101_follower  --robot.port=COM3 --robot.id=my_awesome_follower_arm --robot.cameras="{ front: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30,  fourcc: 'MJPG'}}" --teleop.type=so101_leader --teleop.port=COM4 --teleop.id=my_awesome_leader_arm --display_data=true --dataset.repo_id=${HF_USER}/record-test --dataset.num_episodes=5 --dataset.single_task="Pick up banana." --dataset.push_to_hub=True
+.. code-block:: console
 
-lerobot-train  --dataset.repo_id=${HF_USER}/record-testonline --policy.type=act --output_dir=outputs/train/act_so101_tes --job_name=act_so101_test --policy.device=cpu --wandb.enable=False --policy.repo_id=${HF_USER}/my_policy --dataset.single_task="Pick up banana."
+    lerobot-setup-motors --robot.type=so101_follower --robot.port=COM3
 
-lerobot-record   --robot.type=so101_follower  --robot.port=COM3 --robot.id=my_awesome_follower_arm --robot.cameras="{ front: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30,  fourcc: 'MJPG'}}" --dataset.repo_id=JiaMinEsc/infre --policy.path=JiaMinEsc/record-testonline --dataset.single_task="Pick up banana."
+.. code-block:: console
+
+    lerobot-setup-motors --teleop.type=so101_leader --teleop.port=COM4
+
+calibrate
+=========
+
+舵机是绝对值磁编码传感器，掉电后角度不丢失。可以360度旋转 即 0-4095（0-360）。
+
+舵机的中点 2048 需要 与 物理结构对应。所以要标定中点（修改中点偏移量）。
+
+结构件安装后，旋转范围有了物理限制。以标定中点为中心点，设置角度限制。
+
+**尽量使舵机标定的角度限制与物理限制贴合，否则掉电后的对机械臂的操作可能超过标定的范围，会出问题！！！**
+
+.. code-block:: console
+
+    lerobot-calibrate  --robot.type=so101_follower --robot.port=COM3 --robot.id=my_esc_follower_arm # <- Give the robot a unique name
+
+.. code-block:: console
+
+    lerobot-calibrate  --teleop.type=so101_leader --teleop.port=COM4 --teleop.id=my_esc_leader_arm # <- Give the robot a unique name
+
+
+
+teleoperate
+===========
+
+无摄像头遥操作
+
+.. code-block:: console
+
+    lerobot-teleoperate --robot.type=so101_follower --robot.port=COM3 --robot.id=my_awesome_follower_arm --teleop.type=so101_leader --teleop.port=COM4 --teleop.id=my_awesome_leader_arm
+
+双摄像头遥操作
+
+.. code-block:: console
+
+    lerobot-teleoperate --robot.type=so101_follower  --robot.port=COM3 --robot.id=my_awesome_follower_arm --robot.cameras="{ hand: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30, fourcc: 'MJPG'}, env: {type: opencv, index_or_path: 1, width: 640, height: 480, fps: 30, fourcc: 'MJPG'}}" --teleop.type=so101_leader --teleop.port=COM4 --teleop.id=my_awesome_leader_arm --display_data=true
+
+
+Ref
+===
+
+.. [1] https://huggingface.co/docs/lerobot/so101

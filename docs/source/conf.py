@@ -6,8 +6,8 @@ project = ' EsCommune'
 copyright = '2025, EsCommune'
 author = ' JiaMin'
 
-release = '0.5'
-version = '2025.12.23'
+release = '1.0'
+version = '2026.1.05'
 
 # -- General configuration
 
@@ -17,7 +17,8 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
     'sphinx.ext.intersphinx',
-    'sphinxemoji.sphinxemoji'
+    'sphinxemoji.sphinxemoji',
+    'sphinx_copybutton'
 ]
 
 intersphinx_mapping = {
