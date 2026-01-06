@@ -45,11 +45,11 @@ calibrate [1]_ [2]_
 
 .. code-block:: console
 
-    lerobot-calibrate  --robot.type=so101_follower --robot.port=COM3 --robot.id=my_esc_follower_arm # <- Give the robot a unique name
+    lerobot-calibrate  --robot.type=so101_follower --robot.port=COM3 --robot.id=my_awesome_follower_arm # <- Give the robot a unique name
 
 .. code-block:: console
 
-    lerobot-calibrate  --teleop.type=so101_leader --teleop.port=COM4 --teleop.id=my_esc_leader_arm # <- Give the robot a unique name
+    lerobot-calibrate  --teleop.type=so101_leader --teleop.port=COM4 --teleop.id=my_awesome_leader_arm # <- Give the robot a unique name
 
 
 
