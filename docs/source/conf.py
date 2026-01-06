@@ -3,11 +3,11 @@
 # -- Project information
 
 project = ' EsCommune'
-copyright = '2025, EsCommune'
+copyright = '2026, EsCommune'
 author = ' JiaMin'
 
 release = '1.0'
-version = '2026.1.05'
+version = '2026.1.06'
 
 # -- General configuration
 
