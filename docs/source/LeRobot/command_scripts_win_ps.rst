@@ -65,6 +65,16 @@ teleoperate [1]_
 
 camera [3]_
 ------
+由于已知的Windows平台 openCV backend 的问题. [4]_ [5]_
+
+虽经过 ``pull/1495`` [6]_ 修改后，换为 ``cv2.CAP_MSMF``。但并不是所有的windows电脑都被修复。如果你出现类似问题。建议修改为如下
+
+.. code-block:: python
+
+    # Escommune
+    # src/lerobot/cameras/utils.py line 71,72
+    if platform.system() == "Windows":
+        return int(cv2.CAP_ANY)  # Use Any for Windows instead of MSMF
 
 .. code-block:: console
 
@@ -91,3 +101,6 @@ Ref
 .. [1] LeRobot DoC https://huggingface.co/docs/lerobot/so101
 .. [2] EsCommune Bilibili https://www.bilibili.com/video/BV1HJBLBuEnU/
 .. [3] LeRobot DoC https://huggingface.co/docs/lerobot/cameras#setup-cameras
+.. [4] Failed to connect or configure OpenCV camera 0 https://github.com/huggingface/lerobot/issues?q=Failed%20to%20connect%20or%20configure%20OpenCV%20camera%200
+.. [5] myanvoos OpenCV camera connection fails on Windows due to default backend https://github.com/huggingface/lerobot/issues/1368
+.. [6] todateman pull/1495  https://github.com/huggingface/lerobot/pull/1495
