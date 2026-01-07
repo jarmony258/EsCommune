@@ -78,6 +78,13 @@ pip
 ===
 [2]_ [3]_
 
+国内镜像源添加 [8]_
+-----------------
+
+.. code-block::
+
+    pip config set global.index-url https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
+
 .. code-block::
 
     pip install .
@@ -142,3 +149,4 @@ Ref
 .. [5] python https://packaging.python.org/en/latest/guides/writing-pyproject-toml/
 .. [6] https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html
 .. [7] Python 3.14 import系统 https://docs.python.org/zh-cn/3.14/reference/import.html#
+.. [8] tsinghua 镜像源帮助手册 https://mirrors.tuna.tsinghua.edu.cn/help/pypi/

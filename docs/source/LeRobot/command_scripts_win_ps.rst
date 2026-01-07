@@ -65,7 +65,7 @@ teleoperate [1]_
 
 camera [3]_
 ------
-由于已知的Windows平台 openCV backend 的问题. [4]_ [5]_
+由于已知的Windows平台 openCV backend 的问题，十年前的老问题，多线程读取只能读一个摄像头，第二个就报错。[4]_ [5]_ windows只能单一摄像头。
 
 虽经过 ``pull/1495`` [6]_ 修改后，换为 ``cv2.CAP_MSMF``。但并不是所有的windows电脑都被修复。如果你出现类似问题。建议修改为如下
 
@@ -80,7 +80,7 @@ camera [3]_
 
     lerobot-find-cameras opencv
 
-双摄像头遥操作
+双摄像头遥操作，windows不支持。linux两个摄像头不要插在一个hub上，最好是3.0的hub。
 
 .. code-block::
 
@@ -92,7 +92,7 @@ camera [3]_
 
 .. code-block:: console
 
-    lerobot-teleoperate --robot.type=so101_follower  --robot.port=COM3 --robot.id=my_awesome_follower_arm --robot.cameras="{ hand: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30, fourcc: 'MJPG'}, env: {type: opencv, index_or_path: 1, width: 640, height: 480, fps: 30, fourcc: 'MJPG'}}" --teleop.type=so101_leader --teleop.port=COM4 --teleop.id=my_awesome_leader_arm --display_data=true
+    lerobot-teleoperate --robot.type=so101_follower  --robot.port=COM3 --robot.id=my_awesome_follower_arm --robot.cameras="{ hand: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30, fourcc: 'MJPG'}}" --teleop.type=so101_leader --teleop.port=COM4 --teleop.id=my_awesome_leader_arm --display_data=true
 
 
 Ref

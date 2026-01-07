@@ -1,8 +1,31 @@
-**************************
-Install LeRobot on Windows
-**************************
+*********************************
+Install LeRobot on Linux/Windows
+*********************************
 
 💌 B站官方 `Python现代包架构 LeRobot环境配置与安装(win) <https://www.bilibili.com/video/BV1rWSyBEEBr/>`_
+
+前置需求
+=================
+conda python的虚拟环境是必须的。
+
+Linux
+-----
+
+Miniforge(conda环境)
+
+.. code-block:: console
+
+    wget "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
+    bash Miniforge3-$(uname)-$(uname -m).sh
+
+Windows
+-------
+
+安装anaconda(conda环境)，git即可。
+
+https://git-scm.com/
+
+https://www.anaconda.com/
 
 Environment Setup
 =================
