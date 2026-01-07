@@ -18,6 +18,12 @@ Miniforge(conda环境)
     wget "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
     bash Miniforge3-$(uname)-$(uname -m).sh
 
+如果是新的ubuntu系统，为了能 install lerobot。还需要一些额外的系统依赖。
+
+.. code-block:: console
+
+    sudo apt-get install cmake build-essential python3-dev pkg-config libavformat-dev libavcodec-dev libavdevice-dev libavutil-dev libswscale-dev libswresample-dev libavfilter-dev
+
 Windows
 -------
 
