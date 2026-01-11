@@ -16,9 +16,16 @@ Miniforge(conda环境)
 .. code-block:: console
 
     wget "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh"
+
+.. code-block:: console
+
     bash Miniforge3-$(uname)-$(uname -m).sh
 
 如果是新的ubuntu系统，为了能 install lerobot。还需要一些额外的系统依赖。
+
+.. code-block:: console
+
+    sudo apt update
 
 .. code-block:: console
 
@@ -40,6 +47,8 @@ Environment Setup
 
     conda create -y -n lerobot python=3.10
 
+.. code-block:: console
+
     conda activate lerobot
 
 激活lerobot环境。之后所有的pip安装，都会在这个环境里。需要注意的是conda-forge ffmpeg并不是python pkg，所以并不会出现在`pip list`里，需要使用`conda list`.
@@ -49,12 +58,14 @@ Environment Setup
     conda install ffmpeg=7.1.1 -c conda-forge
 
 .. note::
+
     Windows安装ffmpeg可能会使虚拟环境受到破坏，如果出现问题，例如无法使用pip. 可以试着更低的版本。
 
+    .. code-block:: console
 
-.. code-block:: console
+	    conda install ffmpeg=7.1.0 -c conda-forge --no-deps
 
-	conda install ffmpeg=7.1.0 -c conda-forge --no-deps
+
 		
 
 CMD中使用where命令查看具体的位置。PowerShell中使用where.exe命令查看具体位置。
