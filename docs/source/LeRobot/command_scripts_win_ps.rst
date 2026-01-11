@@ -2,11 +2,7 @@
 Scripts
 *******
 
-.. note::
-
-    Mainly for windows. If you want to operate at LinuxOS, please check the Ref [1]_.
-
-find-port [1]_
+Find-port [1]_
 =========
 
 插入端口，所有已插入的端口都会被脚本识别。
@@ -17,8 +13,22 @@ find-port [1]_
 
     lerobot-find-port
 
-setup-motors [1]_
+linux
+-----
+
+.. note::
+
+    ubuntu系统可能会有USB设备的访问权限问题。如果访问被拒绝。可以修改访问权限。
+
+    .. code-block::
+
+        sudo chmod 777 /dev/ttyACM1 # means that all the users can read&write&execute to this device.
+
+Setup-motors [1]_
 ============
+
+windows
+-------
 
 多个舵机使用串行通讯挂在一条舵机总线上(一条线)。通过不同的ID区分。其中 Gripper 的 ID 为6，依次递减。
 
@@ -30,7 +40,17 @@ setup-motors [1]_
 
     lerobot-setup-motors --teleop.type=so101_leader --teleop.port=COM4
 
-calibrate [1]_ [2]_
+linux
+-----
+.. code-block:: console
+
+    lerobot-setup-motors --robot.type=so101_follower --robot.port=/dev/ttyACM1
+
+.. code-block:: console
+
+    lerobot-setup-motors --teleop.type=so101_leader --teleop.port=/dev/ttyACM0
+
+Calibrate [1]_ [2]_
 =========
 
 舵机是绝对值磁编码传感器，掉电后角度不丢失。可以360度旋转 即 0-4095（0-360）。
@@ -43,6 +63,9 @@ calibrate [1]_ [2]_
 
     **尽量使舵机标定的角度限制与物理限制贴合，否则掉电后对机械臂的操作可能超过标定的范围，会出问题！！！**
 
+windows
+-------
+
 .. code-block:: console
 
     lerobot-calibrate  --robot.type=so101_follower --robot.port=COM3 --robot.id=my_awesome_follower_arm # <- Give the robot a unique name
@@ -52,22 +75,51 @@ calibrate [1]_ [2]_
     lerobot-calibrate  --teleop.type=so101_leader --teleop.port=COM4 --teleop.id=my_awesome_leader_arm # <- Give the robot a unique name
 
 
+linux
+-----
+.. code-block:: console
 
-teleoperate [1]_
+    lerobot-calibrate  --robot.type=so101_follower --robot.port=/dev/ttyACM1 --robot.id=my_awesome_follower_arm # <- Give the robot a unique name
+
+.. code-block:: console
+
+    lerobot-calibrate  --teleop.type=so101_leader --teleop.port=/dev/ttyACM0 --teleop.id=my_awesome_leader_arm # <- Give the robot a unique name
+
+
+Teleoperate [1]_
 ===========
+.. note::
 
-无摄像头遥操作
+    遥操作默认频率60HZ。加入摄像头后，频率会有所下降。一旦达到20hz，控制频率降低，导致从臂(Follower)会发抖。
+
+无摄像头遥操作。
+
+windows
+-------
 
 .. code-block:: console
 
     lerobot-teleoperate --robot.type=so101_follower --robot.port=COM3 --robot.id=my_awesome_follower_arm --teleop.type=so101_leader --teleop.port=COM4 --teleop.id=my_awesome_leader_arm
 
-
-camera [3]_
+linux
 ------
-由于已知的Windows平台 openCV backend 的问题，十年前的老问题，多线程读取只能读一个摄像头，第二个就报错。[4]_ [5]_ windows只能单一摄像头。
+.. code-block:: console
 
-虽经过 ``pull/1495`` [6]_ 修改后，换为 ``cv2.CAP_MSMF``。但并不是所有的windows电脑都被修复。如果你出现类似问题。建议修改为如下
+    lerobot-teleoperate --robot.type=so101_follower --robot.port=/dev/ttyACM1 --robot.id=my_awesome_follower_arm --teleop.type=so101_leader --teleop.port=/dev/ttyACM0 --teleop.id=my_awesome_leader_arm
+
+Camera [3]_
+===========
+.. note::
+
+    Windows openCV 多线程有陈年旧bug，只能读一个 [7]_ 。
+
+    Linux可以都执行。Linux两个摄像头不要插在一个hub上(USB控制器上)，否则共用IO带宽，容易出问题。
+
+
+由于已知的 Windows 平台的问题，多线程读取只能读一个摄像头，第二个就报错。[4]_ [5]_ windows只能单一摄像头。
+
+而且默认代码的单一摄像头读取也可能出现问题。
+虽经过 ``pull/1495`` [6]_ 修改后，将OpenCV后端换为 ``cv2.CAP_MSMF``。但并不是所有的windows电脑都被修复。如果你出现类似问题。建议修改为如下
 
 .. code-block:: python
 
@@ -76,11 +128,14 @@ camera [3]_
     if platform.system() == "Windows":
         return int(cv2.CAP_ANY)  # Use Any for Windows instead of MSMF
 
+
+使用下面的python注册脚本，寻找摄像头。
+
 .. code-block:: console
 
     lerobot-find-cameras opencv
 
-双摄像头遥操作，windows不支持。linux两个摄像头不要插在一个hub上，最好是3.0的hub。
+摄像头参数是python的字典，**每一个空格都很重要**。
 
 .. code-block::
 
@@ -89,10 +144,109 @@ camera [3]_
         env: {type: opencv, index_or_path: 1, width: 640, height: 480, fps: 30, fourcc: 'MJPG'}
     }
 
+windows
+-------
+
+单摄
 
 .. code-block:: console
 
     lerobot-teleoperate --robot.type=so101_follower  --robot.port=COM3 --robot.id=my_awesome_follower_arm --robot.cameras="{ hand: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30, fourcc: 'MJPG'}}" --teleop.type=so101_leader --teleop.port=COM4 --teleop.id=my_awesome_leader_arm --display_data=true
+
+
+linux
+-----
+
+双摄
+
+.. code-block:: console
+
+    lerobot-teleoperate --robot.type=so101_follower  --robot.port=/dev/ttyACM1 --robot.id=my_awesome_follower_arm --robot.cameras="{ hand: {type: opencv, index_or_path: 2, width: 640, height: 480, fps: 30, fourcc: 'YUYV'}, env: {type: opencv, index_or_path: 4, width: 640, height: 480, fps: 30, fourcc: 'YUYV'}}" --teleop.type=so101_leader --teleop.port=/dev/ttyACM0 --teleop.id=my_awesome_leader_arm --display_data=true
+
+.. code-block:: bash
+
+    lerobot-find-cameras
+    ERROR:lerobot.scripts.lerobot_find_cameras:Error finding RealSense cameras: name 'rs' is not defined
+
+    --- Detected Cameras ---
+    Camera #0:
+      Name: OpenCV Camera @ /dev/video0
+      Type: OpenCV
+      Id: /dev/video0
+      Backend api: V4L2
+      Default stream profile:
+        Format: 0.0
+        Fourcc: YUYV
+        Width: 640
+        Height: 480
+        Fps: 30.0
+    --------------------
+    Camera #1:
+      Name: OpenCV Camera @ /dev/video2
+      Type: OpenCV
+      Id: /dev/video2
+      Backend api: V4L2
+      Default stream profile:
+        Format: 0.0
+        Fourcc: YUYV
+        Width: 640
+        Height: 480
+        Fps: 30.0
+    --------------------
+    Camera #2:
+      Name: OpenCV Camera @ /dev/video4
+      Type: OpenCV
+      Id: /dev/video4
+      Backend api: V4L2
+      Default stream profile:
+        Format: 0.0
+        Fourcc: YUYV
+        Width: 640
+        Height: 480
+        Fps: 30.0
+    --------------------
+
+    Finalizing image saving...
+    Image capture finished. Images saved to outputs/captured_images
+
+    (lerobot) escommune@ubuntu2403:~/lerobot$ lerobot-teleoperate --robot.type=so101_follower  --robot.port=/dev/ttyACM1 --robot.id=my_awesome_follower_arm --robot.cameras="{ hand: {type: opencv, index_or_path: 2, width: 640, height: 480, fps: 30, fourcc: 'YUYV'}, env: {type: opencv, index_or_path: 4, width: 640, height: 480, fps: 30, fourcc: 'YUYV'}}" --teleop.type=so101_leader --teleop.port=/dev/ttyACM0 --teleop.id=my_awesome_leader_arm --display_data=true
+    INFO 2026-01-11 18:19:05 eoperate.py:199 {'display_compressed_images': False,
+     'display_data': True,
+     'display_ip': None,
+     'display_port': None,
+     'fps': 60,
+     'robot': {'calibration_dir': None,
+               'cameras': {'env': {'color_mode': <ColorMode.RGB: 'rgb'>,
+                                   'fourcc': 'YUYV',
+                                   'fps': 30,
+                                   'height': 480,
+                                   'index_or_path': 4,
+                                   'rotation': <Cv2Rotation.NO_ROTATION: 0>,
+                                   'warmup_s': 1,
+                                   'width': 640},
+                           'hand': {'color_mode': <ColorMode.RGB: 'rgb'>,
+                                    'fourcc': 'YUYV',
+                                    'fps': 30,
+                                    'height': 480,
+                                    'index_or_path': 2,
+                                    'rotation': <Cv2Rotation.NO_ROTATION: 0>,
+                                    'warmup_s': 1,
+                                    'width': 640}},
+               'disable_torque_on_disconnect': True,
+               'id': 'my_awesome_follower_arm',
+               'max_relative_target': None,
+               'port': '/dev/ttyACM1',
+               'use_degrees': False},
+     'teleop': {'calibration_dir': None,
+                'id': 'my_awesome_leader_arm',
+                'port': '/dev/ttyACM0',
+                'use_degrees': False},
+     'teleop_time_s': None}
+    INFO 2026-01-11 18:19:05 ader_base.py:77 my_awesome_leader_arm SO101Leader connected.
+    INFO 2026-01-11 18:19:06 a_opencv.py:180 OpenCVCamera(2) connected.
+    INFO 2026-01-11 18:19:07 a_opencv.py:180 OpenCVCamera(4) connected.
+    INFO 2026-01-11 18:19:07 wer_base.py:105 my_awesome_follower_arm SO101Follower connected.
+    Teleop loop time: 59.82ms (17 Hz)
 
 
 Ref
@@ -101,6 +255,7 @@ Ref
 .. [1] LeRobot DoC https://huggingface.co/docs/lerobot/so101
 .. [2] EsCommune Bilibili https://www.bilibili.com/video/BV1HJBLBuEnU/
 .. [3] LeRobot DoC https://huggingface.co/docs/lerobot/cameras#setup-cameras
-.. [4] Failed to connect or configure OpenCV camera 0 https://github.com/huggingface/lerobot/issues?q=Failed%20to%20connect%20or%20configure%20OpenCV%20camera%200
-.. [5] myanvoos OpenCV camera connection fails on Windows due to default backend https://github.com/huggingface/lerobot/issues/1368
-.. [6] todateman pull/1495  https://github.com/huggingface/lerobot/pull/1495
+.. [4] Lerobot GitHub  **BUG** Failed to connect or configure OpenCV camera 0 https://github.com/huggingface/lerobot/issues?q=Failed%20to%20connect%20or%20configure%20OpenCV%20camera%200
+.. [5] Lerobot GitHub  **BUG** myanvoos OpenCV camera connection fails on Windows due to default backend https://github.com/huggingface/lerobot/issues/1368
+.. [6] Lerobot GitHub todateman pull/1495  https://github.com/huggingface/lerobot/pull/1495
+.. [7] OpneCV GitHub **BUG** Windows MultiThread MultiCam https://github.com/opencv/opencv/issues/27312
