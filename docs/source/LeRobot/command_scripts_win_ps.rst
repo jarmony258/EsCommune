@@ -109,6 +109,14 @@ linux
 
 Camera [3]_
 ===========
+
+使用下面的python注册脚本，寻找摄像头。
+
+.. code-block:: console
+
+    lerobot-find-cameras opencv
+
+
 .. note::
 
     Windows openCV 多线程有陈年旧bug，只能读一个 [7]_ 。
@@ -126,22 +134,17 @@ Camera [3]_
     # Escommune
     # src/lerobot/cameras/utils.py line 71,72
     if platform.system() == "Windows":
-        return int(cv2.CAP_ANY)  # Use Any for Windows instead of MSMF
+        return int(cv2.CAP_DSHOW)  # Use "DSHOW" or "ANY" for Windows instead of MSMF
 
 
-使用下面的python注册脚本，寻找摄像头。
-
-.. code-block:: console
-
-    lerobot-find-cameras opencv
 
 摄像头参数是python的字典，**每一个空格都很重要**。
 
 .. code-block::
 
     {
-        hand: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30, fourcc: 'MJPG'},
-        env: {type: opencv, index_or_path: 1, width: 640, height: 480, fps: 30, fourcc: 'MJPG'}
+        env: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30, fourcc: 'MJPG'},
+        hand: {type: opencv, index_or_path: 1, width: 640, height: 480, fps: 30, fourcc: 'MJPG'}
     }
 
 windows
@@ -151,7 +154,7 @@ windows
 
 .. code-block:: console
 
-    lerobot-teleoperate --robot.type=so101_follower  --robot.port=COM3 --robot.id=my_awesome_follower_arm --robot.cameras="{ hand: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30, fourcc: 'MJPG'}}" --teleop.type=so101_leader --teleop.port=COM4 --teleop.id=my_awesome_leader_arm --display_data=true
+    lerobot-teleoperate --robot.type=so101_follower  --robot.port=COM3 --robot.id=my_awesome_follower_arm --robot.cameras="{ env: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30, fourcc: 'MJPG'}}" --teleop.type=so101_leader --teleop.port=COM4 --teleop.id=my_awesome_leader_arm --display_data=true
 
 
 linux
