@@ -136,7 +136,27 @@ Camera [3]_
     if platform.system() == "Windows":
         return int(cv2.CAP_DSHOW)  # Use "DSHOW" or "ANY" for Windows instead of MSMF
 
+.. note::
 
+    可以通过下面的代码看自己支持的后端。
+
+    .. code-block:: python
+
+        import cv2
+        build_info = cv2.getBuildInformation()
+
+        >>>
+        Video I/O backends in this OpenCV build:
+        =========================================
+          Video I/O:
+            FFMPEG:                      YES (prebuilt binaries)
+              avcodec:                   YES (58.134.100)
+              avformat:                  YES (58.76.100)
+              avutil:                    YES (56.70.100)
+              swscale:                   YES (5.9.100)
+              avresample:                YES (4.0.0)
+            GStreamer:                   NO
+            DirectShow:                  YES
 
 摄像头参数是python的字典，**每一个空格都很重要**。
 
