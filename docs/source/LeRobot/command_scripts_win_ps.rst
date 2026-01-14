@@ -88,6 +88,8 @@ linux
 
 Teleoperate [1]_
 ===========
+机械臂连接后，为了降低抖动，会修改舵机默认的PID参数。修改的参数为P(32->16)。 ``so101_follower.py->connect()->configure()``
+
 .. note::
 
     遥操作默认频率60HZ。加入摄像头后，频率会有所下降。一旦达到20hz，控制频率降低，导致从臂(Follower)会发抖。
