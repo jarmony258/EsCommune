@@ -2,6 +2,8 @@
 Scripts
 *******
 
+💌 B站官方 `LeRobot 30Kg双摄 组装，标定，双平台遥操作 全面一站式解决 <https://www.bilibili.com/video/BV16rrvBiEWa/>`_
+
 Find-port [1]_
 =========
 
