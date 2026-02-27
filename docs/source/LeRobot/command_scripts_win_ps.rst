@@ -76,6 +76,7 @@ windows
 
     lerobot-calibrate  --teleop.type=so101_leader --teleop.port=COM4 --teleop.id=my_awesome_leader_arm # <- Give the robot a unique name
 
+标定后的机械臂数据存储在 ``C:\Users\hp四核\.cache\huggingface\lerobot\calibration`` 。如果我们有两条Follower臂，一条19KG，一条30KG，分别标定后都存储在这个位置。
 
 linux
 -----
@@ -87,6 +88,14 @@ linux
 
     lerobot-calibrate  --teleop.type=so101_leader --teleop.port=/dev/ttyACM0 --teleop.id=my_awesome_leader_arm # <- Give the robot a unique name
 
+标定后的机械臂数据存储在 ``/home/escommune/.cache/huggingface/lerobot/calibration`` 。如果我们有两条Follower臂，一条19KG，一条30KG，分别标定后都存储在这个位置。
+
+.. note::
+
+    ``.cache`` 文件在 ``linux`` 的 ``home`` 下默认是隐藏的，使用 ``Ctrl+H`` 使得隐藏文件夹显示出来。
+
+    (base) escommune@ubuntu2403:~/.cache/huggingface/lerobot/calibration/robots/so101_follower$ ls
+    **my_19kg_follower_arm.json   my_30kg_follower_arm.json**
 
 Teleoperate [1]_
 ===========
