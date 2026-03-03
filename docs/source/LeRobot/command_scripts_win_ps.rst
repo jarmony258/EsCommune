@@ -4,6 +4,13 @@ Scripts
 
 💌 B站官方 `LeRobot 30Kg双摄 组装，标定，双平台遥操作 全面一站式解决 <https://www.bilibili.com/video/BV16rrvBiEWa/>`_
 
+Conda Env
+=========
+
+.. code-block:: shell
+
+    conda activate lerobot
+
 Find-port [1]_
 =========
 
@@ -11,7 +18,7 @@ Find-port [1]_
 
 拔出想要知道端口号的端口，键入enter。
 
-.. code-block:: console
+.. code-block:: bash
 
     lerobot-find-port
 
@@ -22,9 +29,11 @@ linux
 
     ubuntu系统可能会有USB设备的访问权限问题。如果访问被拒绝。可以修改访问权限。
 
-    .. code-block::
+    Means that all the users can read&write&execute to devices.
 
-        sudo chmod 777 /dev/ttyACM1 # means that all the users can read&write&execute to this device.
+    .. code-block:: bash
+
+        sudo chmod 777 /dev/ttyACM0 & sudo chmod 777 /dev/ttyACM1
 
 Setup-motors [1]_
 ============
@@ -193,11 +202,34 @@ windows
 linux
 -----
 
-双摄
+Dual-Cam YUYV(Slow High Quality)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 
 .. code-block:: console
 
-    lerobot-teleoperate --robot.type=so101_follower  --robot.port=/dev/ttyACM1 --robot.id=my_awesome_follower_arm --robot.cameras="{ hand: {type: opencv, index_or_path: 2, width: 640, height: 480, fps: 30, fourcc: 'YUYV'}, env: {type: opencv, index_or_path: 4, width: 640, height: 480, fps: 30, fourcc: 'YUYV'}}" --teleop.type=so101_leader --teleop.port=/dev/ttyACM0 --teleop.id=my_awesome_leader_arm --display_data=true
+    lerobot-teleoperate --robot.type=so101_follower  \
+                        --robot.port=/dev/ttyACM1   \
+                        --robot.id=my_awesome_follower_arm \
+                        --robot.cameras="{ hand: {type: opencv, index_or_path: 2, width: 640, height: 480, fps: 30, fourcc: 'YUYV'}, env: {type: opencv, index_or_path: 4, width: 640, height: 480, fps: 30, fourcc: 'YUYV'}}"
+                        --teleop.type=so101_leader  \
+                        --teleop.port=/dev/ttyACM0  \
+                        --teleop.id=my_awesome_leader_arm \
+                        --display_data=true
+
+Dual-Cam MJPG(Fast Low Quality)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: console
+
+    lerobot-teleoperate --robot.type=so101_follower  \
+                        --robot.port=/dev/ttyACM1   \
+                        --robot.id=my_awesome_follower_arm \
+                        --robot.cameras="{ hand: {type: opencv, index_or_path: 2, width: 640, height: 480, fps: 30, fourcc: 'MJPG'}, env: {type: opencv, index_or_path: 4, width: 640, height: 480, fps: 30, fourcc: 'MJPG'}}"
+                        --teleop.type=so101_leader  \
+                        --teleop.port=/dev/ttyACM0  \
+                        --teleop.id=my_awesome_leader_arm \
+                        --display_data=true
 
 .. code-block:: bash
 
