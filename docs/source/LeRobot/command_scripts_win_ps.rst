@@ -211,7 +211,7 @@ Dual-Cam YUYV(Slow High Quality)
     lerobot-teleoperate --robot.type=so101_follower  \
                         --robot.port=/dev/ttyACM1   \
                         --robot.id=my_awesome_follower_arm \
-                        --robot.cameras="{ hand: {type: opencv, index_or_path: 2, width: 640, height: 480, fps: 30, fourcc: 'YUYV'}, env: {type: opencv, index_or_path: 4, width: 640, height: 480, fps: 30, fourcc: 'YUYV'}}"
+                        --robot.cameras="{ hand: {type: opencv, index_or_path: 2, width: 640, height: 480, fps: 30, fourcc: 'YUYV'}, env: {type: opencv, index_or_path: 4, width: 640, height: 480, fps: 30, fourcc: 'YUYV'}}" \
                         --teleop.type=so101_leader  \
                         --teleop.port=/dev/ttyACM0  \
                         --teleop.id=my_awesome_leader_arm \
@@ -225,7 +225,7 @@ Dual-Cam MJPG(Fast Low Quality)
     lerobot-teleoperate --robot.type=so101_follower  \
                         --robot.port=/dev/ttyACM1   \
                         --robot.id=my_awesome_follower_arm \
-                        --robot.cameras="{ hand: {type: opencv, index_or_path: 2, width: 640, height: 480, fps: 30, fourcc: 'MJPG'}, env: {type: opencv, index_or_path: 4, width: 640, height: 480, fps: 30, fourcc: 'MJPG'}}"
+                        --robot.cameras="{ hand: {type: opencv, index_or_path: 2, width: 640, height: 480, fps: 30, fourcc: 'MJPG'}, env: {type: opencv, index_or_path: 4, width: 640, height: 480, fps: 30, fourcc: 'MJPG'}}" \
                         --teleop.type=so101_leader  \
                         --teleop.port=/dev/ttyACM0  \
                         --teleop.id=my_awesome_leader_arm \
