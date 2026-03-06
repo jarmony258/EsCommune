@@ -18,6 +18,8 @@ Robot是人类进化的下一个阶段。
 
 🗺 开源文档 `电子羊公社 EscCommune <https://escommune.readthedocs.io>`_
 
+🍄 QQ社区群 721718984
+
 |:heart:|
 |:rocket:|
 

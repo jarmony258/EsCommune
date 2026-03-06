@@ -2,6 +2,8 @@
 Contribute
 **********
 
+🗺 文档仓库 `GitHub <https://github.com/Alex-gift-hit/EsCommune>`_
+
 .. contents:: Table of Contents
 
 创建一个虚拟环境，```python>=3.10```。
