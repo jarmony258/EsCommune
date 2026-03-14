@@ -45,7 +45,7 @@ Environment Setup
 
 .. code-block:: console
 
-    conda create -y -n lerobot python=3.10
+    conda create -y -n lerobot python=3.12
 
 .. code-block:: console
 
