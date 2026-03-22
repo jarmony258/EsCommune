@@ -6,19 +6,23 @@ Contribute
 
 .. contents:: Table of Contents
 
-创建一个虚拟环境，```python>=3.10```。
-
-虚拟环境中做下列安装。之后 :guilabel:`build` 就可以在本地浏览器查看效果，与官网一致。
-
-sphinx
-======
-
-Installation
-------------
+创建一个虚拟环境，```python>=3.12```。
 
 .. code-block:: console
 
-   $ pip install -U sphinx
+    conda create -y -n escommune python=3.12
+
+虚拟环境中做下列安装。
+
+.. code-block:: console
+
+    cd EsCommune
+    pip install .
+
+之后 :guilabel:`build` 就可以在本地浏览器查看效果，与官网一致。
+
+sphinx
+======
 
 Build
 -----
@@ -33,26 +37,11 @@ Build
 sphinx-rtd-theme
 ================
 
-Installation
-------------
-
-.. code-block:: console
-
-      $ pip install sphinx-rtd-theme
-
 :Documentation:
     https://sphinx-rtd-theme.readthedocs.io/.
 
 Emoji
 =====
-
-Installation
-------------
-
-.. code-block:: console
-
-   pip install sphinxemoji
-
 
 Configuration
 -------------

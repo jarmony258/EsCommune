@@ -2,6 +2,9 @@
 Welcome to EsCommune's documentation!
 *************************************
 
+.. figure:: ./image/logo_escommune_github.png
+    :align: center
+
 **To Next Mutation.**
 
 Robot是人类进化的下一个阶段。

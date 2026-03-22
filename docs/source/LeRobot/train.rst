@@ -80,6 +80,9 @@ Train
       --wandb.enable=false \
       --policy.repo_id=${HF_USER}/act_stack-3-cube
 
+.. figure:: ../image/act_model_checkpoint.png
+    :align: center
+
 
 如果你的名字是 ``alex-hf`` 。可以直接使用下面的命令。
 
@@ -105,7 +108,7 @@ Infer and record
       --robot.id=my_19kg_follower_arm \
       --robot.cameras="{ hand: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30, fourcc: 'MJPG'}, env: {type: opencv, index_or_path: 4, width: 640, height: 480, fps: 30, fourcc: 'MJPG'}}" \
       --display_data=true \
-      --dataset.repo_id=JiaMinEsc/eval_act_stack_3_cube \
+      --dataset.repo_id=${HF_USER}/eval_act_stack_3_cube \
       --dataset.num_episodes=4 \
       --dataset.single_task="stack three cube, 1. spread them out so that they can be grabbed separately. 2. select a cube and place it in front of it as a base. 3. stack the other two onto the base." \
       --dataset.streaming_encoding=true \

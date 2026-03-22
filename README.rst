@@ -1,5 +1,8 @@
 Welcome to EsCommune's documentation!
-===================================
+=====================================
+
+.. figure:: ./docs/source/image/logo_escommune_github.png
+    :align: center
 
 **To Next Mutation.**
 
