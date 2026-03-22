@@ -35,6 +35,83 @@ linux
     HF_USER=$(hf auth whoami | head -n 1)
     echo $HF_USER
 
+.. note::
+
+    ``$HF_USER`` 本质就是我们 Hugging Face 的用户名， 命令行中的 ``${HF_USER}`` 可以直接用自己的名字替换。没有任何区别。
+
+Working Dir
+===========
+执行下面的所有脚本，保证自己在lerobot的项目路径里。而不是随便一个地方。
+
+
+Collect Data
+============
+.. code-block:: console
+
+    lerobot-record \
+        --robot.type=so101_follower \
+        --robot.port=/dev/ttyACM1 \
+        --robot.id=my_19kg_follower_arm \
+        --robot.cameras="{ hand: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30, fourcc: 'MJPG'}, env: {type: opencv, index_or_path: 4, width: 640, height: 480, fps: 30, fourcc: 'MJPG'}}" \
+        --teleop.type=so101_leader \
+        --teleop.port=/dev/ttyACM0 \
+        --teleop.id=my_awesome_leader_arm \
+        --display_data=true \
+        --dataset.repo_id=${HF_USER}/stack-3-cube \
+        --dataset.num_episodes=50 \
+        --dataset.episode_time_s=90 \
+        --dataset.single_task="stack three cube, 1. spread them out so that they can be grabbed separately. 2. select a cube and place it in front of it as a base. 3. stack the other two onto the base." \
+        --dataset.streaming_encoding=true \
+        # --dataset.vcodec=auto \
+        --dataset.encoder_threads=2
+
+Train
+=====
+第一次玩，直接使用 ``ACT`` 就好。没必要好高骛远。ACT是从零开始训练一个模仿学习模型，虽然没有VLA名气大。但是 ``PI，SmolVLA`` 很多的设计思路来自ACT。
+
+.. code-block:: bash
+
+    lerobot-train \
+      --dataset.repo_id=${HF_USER}/stack-3-cube \
+      --policy.type=act \
+      --output_dir=outputs/train/act_your_dataset \
+      --job_name=act_stack-3-cube \
+      --policy.device=cuda \
+      --wandb.enable=false \
+      --policy.repo_id=${HF_USER}/act_stack-3-cube
+
+
+如果你的名字是 ``alex-hf`` 。可以直接使用下面的命令。
+
+.. code-block:: bash
+
+    lerobot-train \
+      --dataset.repo_id=alex-hf/stack-3-cube \
+      --policy.type=act \
+      --output_dir=outputs/train/act_your_dataset \
+      --job_name=act_stack-3-cube \
+      --policy.device=cuda \
+      --wandb.enable=false \
+      --policy.repo_id=alex-hf/act_stack-3-cube
+
+Infer and record
+================
+
+.. code-block:: bash
+
+    lerobot-record \
+      --robot.type=so101_follower \
+      --robot.port=/dev/ttyACM1 \
+      --robot.id=my_19kg_follower_arm \
+      --robot.cameras="{ hand: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30, fourcc: 'MJPG'}, env: {type: opencv, index_or_path: 4, width: 640, height: 480, fps: 30, fourcc: 'MJPG'}}" \
+      --display_data=true \
+      --dataset.repo_id=JiaMinEsc/eval_act_stack_3_cube \
+      --dataset.num_episodes=4 \
+      --dataset.single_task="stack three cube, 1. spread them out so that they can be grabbed separately. 2. select a cube and place it in front of it as a base. 3. stack the other two onto the base." \
+      --dataset.streaming_encoding=true \
+      --dataset.encoder_threads=2 \
+      --policy.path=outputs/train/act_your_dataset/checkpoints/last/pretrained_model
+
 Ref
 ===
 
