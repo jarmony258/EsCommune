@@ -43,6 +43,9 @@ Working Dir
 ===========
 执行下面的所有脚本，保证自己在lerobot的项目路径里。而不是随便一个地方。
 
+.. code-block:: console
+
+    cd lerobot
 
 Collect Data
 ============
