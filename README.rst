@@ -1,5 +1,3 @@
-Welcome to EsCommune's documentation!
-=====================================
 
 .. figure:: ./docs/source/image/logo_escommune_github.png
     :align: center
@@ -17,7 +15,7 @@ Robot是人类进化的下一个阶段。
 
 💌 B站官方 `电子羊公社 <https://space.bilibili.com/309967369>`_
 
-🗺 开源文档 `电子羊公社 EscCommune <https://escommune.readthedocs.io>`_
+🗺 开源文档 `电子羊公社 EsCommune <https://escommune.readthedocs.io>`_
 
 🍄 QQ社区群 721718984
 

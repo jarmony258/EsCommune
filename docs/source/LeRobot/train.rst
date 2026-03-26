@@ -46,10 +46,25 @@ Working Dir
 .. code-block:: console
 
     cd lerobot
+    # (lerobot) escommune@escommune-ZOIKEZ9T09Y56:~/Public/GItHub/lerobot$
+
+
+Wandb [2]_
+==========
+训练过程图形化显示，没什么大用前期，毕竟刚入门连模型内部张什么样子都不清楚。使用之前需要登陆。
+
+.. code-block:: bash
+
+    wandb login
+
+本地训练 ``SmolVLA`` 的结果。
+
+.. figure:: ../image/wandb.png
+    :align: center
 
 Collect Data
 ============
-.. code-block:: console
+.. code-block:: bash
 
     lerobot-record \
         --robot.type=so101_follower \
@@ -118,7 +133,44 @@ Infer and record
       --dataset.encoder_threads=2 \
       --policy.path=outputs/train/act_your_dataset/checkpoints/last/pretrained_model
 
+SmolVLA
+=======
+
+
+SmolVLA源自Pi0，但是作了裁减使得模型比较小。经过实测可以在一张 3060 6G 的笔记本上训练 batch_size=4, 显存占用3G。
+
+.. figure:: ../image/SmolVLA_train.png
+    :align: center
+
+
+
+SmolVLA Train
+-------------
+
+.. code-block:: bash
+
+    lerobot-train \
+      --policy.path=lerobot/smolvla_base \
+      --dataset.repo_id=JiaMinEsc/stack-3-cube \
+      --batch_size=4 \
+      --steps=10000 \
+      --output_dir=outputs/train/my_smolvla_batch4 \
+      --job_name=my_smolvla_training \
+      --policy.device=cuda \
+      --wandb.enable=true \
+      --policy.push_to_hub=false
+      --rename_map='{"observation.images.env": "observation.images.camera1", "observation.images.hand": "observation.images.camera2"}'
+
+
+``lerobot 5.0`` 新增加输入重命名。
+
+.. code-block:: bash
+
+    - Missing features: ['observation.images.camera1', 'observation.images.camera2', 'observation.images.camera3']
+    - Extra features: ['observation.images.env', 'observation.images.hand']
+
 Ref
 ===
 
 .. [1] LeRobot DoC "Imitation Learning on Real-World Robots" https://huggingface.co/docs/lerobot/il_robots
+.. [2] Wandb QuickStart https://wandb.ai/quickstart?utm_source=app-resource-center&utm_medium=app&utm_term=quickstart
