@@ -133,7 +133,7 @@ conda
 
 .. code-block:: sh
 
-    conda create --name lerobot python=3.10
+    conda create --name lerobot python=3.12
     conda activate lerobot
 
     conda deactivate
