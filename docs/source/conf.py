@@ -7,7 +7,7 @@ copyright = '2026, EsCommune'
 author = ' JiaMin'
 
 release = '5.0'
-version = '2026.3.22'
+version = '2026.3.28'
 
 # -- General configuration
 
