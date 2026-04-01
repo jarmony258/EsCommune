@@ -1,6 +1,20 @@
-******************
-PI0-0.6 VLA Series
-******************
+************************
+Final-PI0-0.6 VLA Series
+************************
+
+好的，这就是Lerobot的全部了。学习了一些东西后，很多人感到意犹未尽。
+
+大家问，为什么不去作Pi0-Pi0.5的训练以及推理。答案是，LeRobot最大的作用是入门，给我们一个硬件的平台，一些预制好的模型，可以一键跑的推理。
+但也仅此而已了。在摸过机械臂，训练，推理模型之后，是否还有最初的好奇以及爱好？如果有，请继续走下去。
+
+Pi系列模型建议直接去看OpenPi的仓库。我们一向推崇尽量看一手资料。
+
+机器人学涉及到太多的东西，这些东西不是跑跑脚本就能学会的。希望大家可以在脚本之后，知其所以然。去看大语言模型，控制理论，VLM，Pytorch，
+深度生成模型，优化理论，机器人学，强化学习。
+
+我们都在路上，与君共勉。**To Next Mutation.**
+
+Francesco Capuano, Caroline Pascal, Adil Zouitine, Thomas Wolf, Michel Aractingi “Robot Learning: A Tutorial“ 2025 https://arxiv.org/abs/2510.12403
 
 PI官网 https://www.physicalintelligence.company/ 近期融资6亿美元，约
 
