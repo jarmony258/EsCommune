@@ -139,6 +139,52 @@ conda
     conda deactivate
     conda remove --name lerobot --all
 
+
+Function Param [10]_
+===============
+
+.. code-block:: sh
+
+    def f(pos1, pos2, /, pos_or_kwd, *, kwd1, kwd2):
+          -----------    ----------     ----------
+            |             |                  |
+            |        Positional or keyword   |
+            |                                - Keyword only
+             -- Positional only
+
+可变长度
+--------
+
+函数参数分为可变以及不可变长度。可变长度分为2种。
+
+1. 可变长度(tuple) , 位置参数:
+
+.. code-block:: python
+
+    def hello_tuple(*arguments):
+        print(arguments)
+
+.. code-block:: python
+
+    arg = [1, 2, 'HelloWorld!']
+    hello_tuple(*arg)
+    (1, 2, 'HelloWorld!')
+    hello_tuple(1, 2, 'HelloWorld!')
+    (1, 2, 'HelloWorld!')
+
+
+2. 可变长度(dict)，Key-Value参数
+
+.. code-block:: python
+
+    def hello_dict(**keywords):
+        print(keywords)
+
+.. code-block:: python
+
+    hello_dict(name="escommune", vision="To next Mutation!")
+    {'name': 'escommune', 'vision': 'To next Mutation!'}
+
 Ref
 ===
 
@@ -150,3 +196,5 @@ Ref
 .. [6] https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html
 .. [7] Python 3.14 import系统 https://docs.python.org/zh-cn/3.14/reference/import.html#
 .. [8] tsinghua 镜像源帮助手册 https://mirrors.tuna.tsinghua.edu.cn/help/pypi/
+.. [9] 廖雪峰 函数的参数 https://liaoxuefeng.com/books/python/function/parameter/index.html
+.. [10] Python 3.12 Doc Fucntions https://docs.python.org/3.12/tutorial/controlflow.html#keyword-arguments
