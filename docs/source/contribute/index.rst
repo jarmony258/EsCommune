@@ -2,24 +2,34 @@
 Contribute
 **********
 
-🗺 文档仓库 `GitHub <https://github.com/Alex-gift-hit/EsCommune>`_
+🗺 文档仓库 `GitHub <https://github.com/Alex-gift-hit/EsCommune>`_ 任何问题可以提Issue。
 
-.. contents:: Table of Contents
+.. code-block:: console
+
+    git clone https://github.com/Alex-gift-hit/EsCommune.git
+    cd EsCommune
+
 
 创建一个虚拟环境，```python>=3.12```。
 
 .. code-block:: console
 
     conda create -y -n escommune python=3.12
+    conda activate escommune
 
 虚拟环境中做下列安装。
 
 .. code-block:: console
 
-    cd EsCommune
     pip install .
 
+
+
 之后 :guilabel:`build` 就可以在本地浏览器查看效果，与官网一致。
+
+.. code-block:: console
+
+    sphinx-build -M html docs/source/ build/
 
 sphinx
 ======
