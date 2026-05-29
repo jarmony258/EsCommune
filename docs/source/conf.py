@@ -35,3 +35,15 @@ html_theme = 'sphinx_rtd_theme'
 
 # -- Options for EPUB output
 epub_show_urls = 'footnote'
+
+latex_engine = 'xelatex'
+latex_elements = {
+    'papersize': 'a4paper',
+    'pointsize': '11pt',
+    'preamble': r'''
+        \usepackage{ctex}
+        \usepackage{xeCJK}
+        \setCJKmainfont{SimHei}
+        \setCJKsansfont{SimHei}
+    '''
+}
