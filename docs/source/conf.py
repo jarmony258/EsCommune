@@ -41,9 +41,6 @@ latex_elements = {
     'papersize': 'a4paper',
     'pointsize': '11pt',
     'preamble': r'''
-        \usepackage{ctex}
-        \usepackage{xeCJK}
-        \setCJKmainfont{SimHei}
-        \setCJKsansfont{SimHei}
+        \usepackage[UTF8]{ctex}
     '''
 }
