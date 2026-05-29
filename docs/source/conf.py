@@ -36,11 +36,9 @@ html_theme = 'sphinx_rtd_theme'
 # -- Options for EPUB output
 epub_show_urls = 'footnote'
 
+# -- ref https://docs.readthedocs.com/platform/stable/guides/pdf-non-ascii-languages.html#how-to-support-unicode-in-sphinx-pdfs
 latex_engine = 'xelatex'
+latex_use_xindy = False
 latex_elements = {
-    'papersize': 'a4paper',
-    'pointsize': '11pt',
-    'preamble': r'''
-        \usepackage[UTF8]{ctex}
-    '''
+    'preamble': '\\usepackage[UTF8]{ctex}\n',
 }
