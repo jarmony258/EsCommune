@@ -51,7 +51,7 @@ Environment Setup
 
     conda activate lerobot
 
-激活lerobot环境。之后所有的pip安装，都会在这个环境里。需要注意的是conda-forge ffmpeg并不是python pkg，所以并不会出现在`pip list`里，需要使用`conda list`.
+激活lerobot环境。之后所有的pip安装，都会在这个环境里。需要注意的是conda-forge ffmpeg并不是python pkg，所以并不会出现在 ``pip list`` 里，需要使用 ``conda list`` .
 
 .. code-block:: console
 
@@ -81,7 +81,8 @@ Install LeRobot
 
 强烈建议从源码处安装lerobot,可以自己改代码。
 
-毕竟是开源项目，里面很多bug，有时候自己发现了就可以改，例如windows下的openCV backend选择问题。
+毕竟是开源项目，里面很多bug，有时候自己发现了就可以改，例如windows下的openCV backend选择问题。而且公社的目标也是让更多人能参与到类似的项目开发中去，
+真的有能力去编写代码，参与开源项目，所以尽量编辑模式下安装。
 
 .. code-block::
 
@@ -95,6 +96,20 @@ Install LeRobot
 .. note::
 
     编辑模式下安装的是默认依赖，可选依赖不会安装，例如 feetech-servo-sdk.
+
+    ``lerobot 0.5.0`` 后，**默认依赖项仅有必要的被保存，以减少安装时长**。像机器人标定，数据集录制，等功能都被放到 **基于功能的扩展包(feature-scoped extras)** 包里。
+
+
+Install script dependencies
+===========================
+.. note::
+
+    ``lerobot 0.5.0`` 后
+
+.. code-block::
+
+    pip install -e ".[core_scripts]"  # 对于机器人工作流程（录制、回放、校准）
+    pip install -e ".[training]"      # 对于策略模型(policy)训练
 
 
 Install Motor Optional dependencies

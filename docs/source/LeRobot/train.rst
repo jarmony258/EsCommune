@@ -8,7 +8,7 @@ Hugging Face平台的注册对于注册的网络IP地址有地理位置限制。
 
 注册完成后需要申请 Access Token，这东西只出现一次，记得保存好。通过这个token可以在命令行中访问自己的HF账号的数据。
 
-.. code-block:: console
+.. code-block:: shell
 
     # eg. huggingface-cli login --token hf_dfhidhdihsidhfdDjk --add-to-git-credential
     huggingface-cli login --token ${HUGGINGFACE_TOKEN} --add-to-git-credential
@@ -51,7 +51,7 @@ Working Dir
 
 Wandb [2]_
 ==========
-训练过程图形化显示，没什么大用前期，毕竟刚入门连模型内部张什么样子都不清楚。使用之前需要登陆。
+训练过程图形化显示，没什么大用前期，毕竟刚入门连模型内部张什么样子都不清楚。使用之前需要登陆。登陆需要类似 ``HUGGINGFACE_TOKEN`` 的token。
 
 .. code-block:: bash
 
