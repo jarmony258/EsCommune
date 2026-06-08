@@ -18,13 +18,15 @@ Robot是人类进化的下一个阶段。
 That's why we were founded.
 
 
-**电子羊公社(EsCommune)** 是一个关注AI与机器人的具身智能社区。定期分享前沿的研究，商业资讯。进行知识普及与发布技术教程。降低参与机器智能进化的门槛，创造真正的 "Robot" 。**To next Mutation.**
+**电子羊公社(EsCommune)** 是一个关注AI与机器人的具身智能社区。定期分享前沿的研究，商业资讯。进行知识普及与发布技术教程。降低参与机器智能进化的门槛，创造真正的 "Robot" 。
 
-💌 B站官方 `电子羊公社 <https://space.bilibili.com/309967369>`_
+**To next Mutation.**
 
-🗺 开源文档 `电子羊公社 EsCommune <https://escommune.readthedocs.io>`_
+💌 B站官方 [电子羊公社](https://space.bilibili.com/309967369)
 
-🍄 QQ社区群 721718984
+🗺 开源文档 [EsCommune](https://escommune.readthedocs.io)
+
+🍄 QQ社区群 [点击链接加入群聊【电子羊公社】：](https://qm.qq.com/q/RNrZbUELK4)
 
 
 ## Star History
