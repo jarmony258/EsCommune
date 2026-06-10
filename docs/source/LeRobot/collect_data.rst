@@ -132,7 +132,10 @@ Collect Data
 
 实际录制
 -------
-录制一个抓葡萄到碗里的数据集。大家可以去买点葡萄，广东的蓝莓葡萄10元/斤。50个episode。推送到HUB上。
+录制一个抓葡萄到碗里的数据集。大家可以去买点葡萄，广东的蓝莓葡萄10元/斤。50个episode。不推送到HUB上。
+
+.. figure:: ../image/grab_grape.png
+    :align: center
 
 .. code-block:: bash
 
@@ -151,3 +154,13 @@ Collect Data
         --dataset.single_task="Pick up the grapes and put them in the bowl" \
         --dataset.streaming_encoding=true \
         --dataset.encoder_threads=2 \
+        --dataset.push_to_hub=False
+
+手动上传
+-------
+2026年4月28日。lerobot更新了默认加时间戳，但是有点不太好。我们到cache里，删除时间戳，之后上传。
+
+.. code-block:: bash
+
+    repo-id=${HF_USER}/pick-grapes-put-bowl
+    hf upload ${repo-id} ~/.cache/huggingface/lerobot/${repo-id} --repo-type dataset
