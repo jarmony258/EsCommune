@@ -1,6 +1,9 @@
 *****
 Data
 *****
+💌 B站官方 `实战VLA，WAM机器人数据集 LeRobotDataset Pi0.5项目数据处理 <https://www.bilibili.com/video/BV1ycL66ZEn6>`_
+
+💌 B站官方 `机器人模型(VLA, WAM)在学什么？DROID数据集1小时数据流 <https://www.bilibili.com/video/BV1VDEE6dE8m>`_
 
 训练一个AI模型最重要的就是数据。为了更好的体验效果，需要自己录制数据集。录制的数据集默认需要上传的Hugging Face。所以需要注册Hugging Face账号。
 
@@ -62,7 +65,7 @@ Collect Data
 数据存储
 -------
 
-- 数据以 ``LeRobotDataset`` 格式存储，并在录制期间保存到磁盘。
+- 数据以 ``LeRobotDataset`` 格式存储，并在录制期间保存到磁盘。`实战VLA，WAM机器人数据集 LeRobotDataset Pi0.5项目数据处理 <https://www.bilibili.com/video/BV1ycL66ZEn6>`_
 - 默认情况下，录制完成后数据集会自动推送到你的 Hugging Face 页面。
 - 如需禁用上传功能，请使用 ``--dataset.push_to_hub=False``。
 
@@ -90,7 +93,7 @@ Collect Data
 
 使用键盘快捷键控制数据记录流程：
 
-- 按下 **右箭头键（ ``→`` ）**：提前停止当前片段，或跨过 ``reset_time_s`` 时间并进入下一个片段的录制。**这个非常重要，录制完成后立即截停。**
+- 按下 **右箭头键（ ``→`` ）**：提前停止当前片段，或跨过 ``reset_time_s`` 时间并进入下一个片段的录制。**这个非常重要，任务完成后截停。** 参阅DROID最佳实践， `机器人模型(VLA, WAM)在学什么？DROID数据集1小时数据流 <https://www.bilibili.com/video/BV1VDEE6dE8m>`_
 - 按下 **左箭头键（ ``←`` ）**：取消当前片段并重新录制。
 - 按下 **Esc 键（ ``ESC`` ）**：立即停止会话，编码视频并上传数据集。
 
@@ -104,6 +107,18 @@ Collect Data
 
 环境设置
 -------
+
+.. admonition:: Prescript
+    :collapsible: closed
+
+    .. code-block:: bash
+
+        conda activate lerobot
+        lerobot-find-port
+        sudo chmod 777 /dev/ttyACM0 && sudo chmod 777 /dev/ttyACM1
+        cd lerobot
+        lerobot-find-cameras opencv
+
 一开始环境可能乱遭遭的，我们可以打开录制功能，借此进行环境的设置，练习一下任务的遥操作，并且不想默认被上传到HF。所以我们的录制的核心参数如下：
 
 - ``--episode=1``
