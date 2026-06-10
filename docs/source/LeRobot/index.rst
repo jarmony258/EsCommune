@@ -25,5 +25,6 @@ LeRobot 教程
     intro_modern_python_package
     command_install_win_ps
     command_scripts_win_ps
+    collect_data
     train
     pi0_0.6_vla_series

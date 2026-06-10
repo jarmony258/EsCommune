@@ -2,53 +2,6 @@
 Train
 *******
 
-训练一个AI模型最重要的就是数据。为了更好的体验效果，需要自己录制数据集。录制的数据集默认需要上传的Hugging Face。所以需要注册Hugging Face账号。
-
-Hugging Face平台的注册对于注册的网络IP地址有地理位置限制。最好是使用US(American)的地理位置。
-
-注册完成后需要申请 Access Token，这东西只出现一次，记得保存好。通过这个token可以在命令行中访问自己的HF账号的数据。
-
-.. code-block:: shell
-
-    # eg. huggingface-cli login --token hf_dfhidhdihsidhfdDjk --add-to-git-credential
-    huggingface-cli login --token ${HUGGINGFACE_TOKEN} --add-to-git-credential
-
-HF＿USER
-========
-
-windows与linux的 ``$HF_USER`` 的命令有区分。
-
-win-PowerShell
---------------
-
-.. code-block:: console
-
-    $output = hf auth whoami
-    $HF_USER = ($output -split ' ')[2]
-    echo $HF_USER
-
-linux
------
-
-.. code-block:: console
-
-    HF_USER=$(hf auth whoami | head -n 1)
-    echo $HF_USER
-
-.. note::
-
-    ``$HF_USER`` 本质就是我们 Hugging Face 的用户名， 命令行中的 ``${HF_USER}`` 可以直接用自己的名字替换。没有任何区别。
-
-Working Dir
-===========
-执行下面的所有脚本，保证自己在lerobot的项目路径里。而不是随便一个地方。
-
-.. code-block:: console
-
-    cd lerobot
-    # (lerobot) escommune@escommune-ZOIKEZ9T09Y56:~/Public/GItHub/lerobot$
-
-
 Wandb [2]_
 ==========
 训练过程图形化显示，没什么大用前期，毕竟刚入门连模型内部张什么样子都不清楚。使用之前需要登陆。登陆需要类似 ``HUGGINGFACE_TOKEN`` 的token。
@@ -62,26 +15,6 @@ Wandb [2]_
 .. figure:: ../image/wandb.png
     :align: center
 
-Collect Data
-============
-.. code-block:: bash
-
-    lerobot-record \
-        --robot.type=so101_follower \
-        --robot.port=/dev/ttyACM1 \
-        --robot.id=my_19kg_follower_arm \
-        --robot.cameras="{ hand: {type: opencv, index_or_path: 0, width: 640, height: 480, fps: 30, fourcc: 'MJPG'}, env: {type: opencv, index_or_path: 4, width: 640, height: 480, fps: 30, fourcc: 'MJPG'}}" \
-        --teleop.type=so101_leader \
-        --teleop.port=/dev/ttyACM0 \
-        --teleop.id=my_awesome_leader_arm \
-        --display_data=true \
-        --dataset.repo_id=${HF_USER}/stack-3-cube \
-        --dataset.num_episodes=50 \
-        --dataset.episode_time_s=90 \
-        --dataset.single_task="stack three cube, 1. spread them out so that they can be grabbed separately. 2. select a cube and place it in front of it as a base. 3. stack the other two onto the base." \
-        --dataset.streaming_encoding=true \
-        # --dataset.vcodec=auto \
-        --dataset.encoder_threads=2
 
 Train
 =====
