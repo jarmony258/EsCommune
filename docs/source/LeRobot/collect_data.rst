@@ -167,8 +167,8 @@ Collect Data
         --teleop.id=my_awesome_leader_arm \
         --display_data=true \
         --dataset.repo_id=${HF_USER}/pick-grapes-put-bowl \
-        --dataset.num_episodes=1 \
-        --dataset.episode_time_s=300 \
+        --dataset.num_episodes=50 \
+        --dataset.episode_time_s=90 \
         --dataset.single_task="Pick up the grapes and put them in the bowl" \
         --dataset.streaming_encoding=true \
         --dataset.encoder_threads=2 \
