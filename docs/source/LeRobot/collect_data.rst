@@ -1,6 +1,7 @@
 *****
 Data
 *****
+
 💌 B站官方 `实战VLA，WAM机器人数据集 LeRobotDataset Pi0.5项目数据处理 <https://www.bilibili.com/video/BV1ycL66ZEn6>`_
 
 💌 B站官方 `机器人模型(VLA, WAM)在学什么？DROID数据集1小时数据流 <https://www.bilibili.com/video/BV1VDEE6dE8m>`_
@@ -13,8 +14,8 @@ Hugging Face平台的注册对于注册的网络IP地址有地理位置限制。
 
 .. code-block:: shell
 
-    # eg. huggingface-cli login --token hf_dfhidhdihsidhfdDjk --add-to-git-credential
-    huggingface-cli login --token ${HUGGINGFACE_TOKEN} --add-to-git-credential
+    # eg. hf auth login --token hf_dfhidhdihsidhfdDjk --add-to-git-credential
+    hf auth login --token ${HUGGINGFACE_TOKEN} --add-to-git-credential
 
 HF＿USER
 ========
