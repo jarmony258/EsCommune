@@ -75,8 +75,8 @@ Collect Data
 
     .. code-block:: bash
 
-        repo-id=JiaMinEsc/stack-3-cube
-        hf upload ${repo-id} ~/.cache/huggingface/lerobot/${repo-id} --repo-type dataset
+        repo_id=JiaMinEsc/stack-3-cube
+        hf upload ${repo_id} ~/.cache/huggingface/lerobot/${repo_id} --repo-type dataset
 
 
 录制参数
@@ -177,5 +177,9 @@ Collect Data
 
 .. code-block:: bash
 
-    repo-id=${HF_USER}/pick-grapes-put-bowl
-    hf upload ${repo-id} ~/.cache/huggingface/lerobot/${repo-id} --repo-type dataset
+    repo_id=${HF_USER}/pick-grapes-put-bowl
+    echo ${repo_id}
+
+.. code-block:: bash
+
+    hf upload ${repo_id} ~/.cache/huggingface/lerobot/${repo_id} --repo-type dataset
