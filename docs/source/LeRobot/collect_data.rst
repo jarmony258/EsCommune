@@ -118,6 +118,8 @@ Collect Data
         sudo chmod 777 /dev/ttyACM0 && sudo chmod 777 /dev/ttyACM1
         cd lerobot
         lerobot-find-cameras opencv
+        HF_USER=JiaMinEsc # 换成自己的用户名
+        echo $HF_USER
 
 一开始环境可能乱遭遭的，我们可以打开录制功能，借此进行环境的设置，练习一下任务的遥操作，并且不想默认被上传到HF。所以我们的录制的核心参数如下：
 
@@ -183,3 +185,10 @@ Collect Data
 .. code-block:: bash
 
     hf upload ${repo_id} ~/.cache/huggingface/lerobot/${repo_id} --repo-type dataset
+
+
+Ref
+===
+
+.. [1] LeRobot DoC "Imitation Learning on Real-World Robots" https://huggingface.co/docs/lerobot/il_robots
+
