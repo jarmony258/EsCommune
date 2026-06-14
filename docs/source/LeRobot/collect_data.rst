@@ -15,6 +15,7 @@ Hugging Face平台的注册对于注册的网络IP地址有地理位置限制。
 .. code-block:: shell
 
     # eg. hf auth login --token hf_dfhidhdihsidhfdDjk --add-to-git-credential
+    HUGGINGFACE_TOKEN=hf_xxx
     hf auth login --token ${HUGGINGFACE_TOKEN} --add-to-git-credential
 
 HF＿USER
@@ -76,7 +77,7 @@ Collect Data
 
     .. code-block:: bash
 
-        repo_id=JiaMinEsc/stack-3-cube
+        repo_id=JiaMinEsc/pick-grapes-put-bowl
         hf upload ${repo_id} ~/.cache/huggingface/lerobot/${repo_id} --repo-type dataset
 
 
@@ -182,6 +183,7 @@ Collect Data
 
     repo_id=${HF_USER}/pick-grapes-put-bowl
     echo ${repo_id}
+    JiaMinEsc/pick-grapes-put-bowl
 
 .. code-block:: bash
 
