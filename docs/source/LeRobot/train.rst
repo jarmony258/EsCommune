@@ -30,6 +30,8 @@ Train
         cd lerobot
         lerobot-find-cameras opencv
         wandb login
+        HF_USER=JiaMinEsc # 换成自己的用户名
+        echo $HF_USER
 
 第一次玩，直接使用 ``ACT`` 就好。没必要好高骛远。ACT是从零开始训练一个模仿学习模型，虽然没有VLA名气大。但是 ``PI，SmolVLA`` 很多的设计思路来自ACT。
 

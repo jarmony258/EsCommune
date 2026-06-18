@@ -126,7 +126,7 @@ Collect Data
 一开始环境可能乱遭遭的，我们可以打开录制功能，借此进行环境的设置，练习一下任务的遥操作，并且不想默认被上传到HF。所以我们的录制的核心参数如下：
 
 - ``--episode=1``
-- ``--episode_time_s=300`` 5分钟
+- ``--episode_time_s=600`` 10分钟
 - ``--single_task=“env setup”``
 - ``--dataset.push_to_hub=False`` 不要上传
 
@@ -143,7 +143,7 @@ Collect Data
         --display_data=true \
         --dataset.repo_id=${HF_USER}/env-setup \
         --dataset.num_episodes=1 \
-        --dataset.episode_time_s=300 \
+        --dataset.episode_time_s=600 \
         --dataset.single_task="env setup" \
         --dataset.streaming_encoding=true \
         --dataset.encoder_threads=2 \
